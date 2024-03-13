@@ -1,0 +1,5 @@
+vim.cmd("set nu")
+vim.cmd("set rnu")
+vim.cmd("set tabstop")
+vim.cmd("set shiftwidth=2")
+vim.cmd("set expandtab")
