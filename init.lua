@@ -18,8 +18,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-  --	"williamboman/mason.nvim",
-  --	"williamboman/mason-lspconfig.nvim",
+  "williamboman/mason.nvim",
+  "williamboman/mason-lspconfig.nvim",
   "neovim/nvim-lspconfig",
   {
     "folke/which-key.nvim",
@@ -44,18 +44,17 @@ local plugins = {
 -- "requires" --
 
 require("lazy").setup(plugins)
---require("mason").setup()
---require("mason-lspconfig").setup()
-require("lspconfig").lua_ls.setup({})
---require("lspconfig").pyright.setup({})
---[[ require("formatter").setup({
-	logging = true,
-	log_level = vim.log.levels.WARN,
-	filetype = {
-		lua = {
-			require("formatter.filetypes.lua").stylua,
-		},
-	},
+require("mason").setup()
+require("mason-lspconfig").setup()
 
-}) ]]
-      --
+-- LSP setups
+require("lspconfig").lua_ls.setup({
+  settings = {
+    Lua = {
+        diagnostics = {
+          globals = { "vim" }
+        }
+    }
+  }
+})
+require("lspconfig").pyright.setup({})
