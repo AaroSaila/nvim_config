@@ -3,4 +3,5 @@ vim.cmd("set rnu")
 vim.cmd("set tabstop")
 vim.cmd("set shiftwidth=2")
 vim.cmd("set expandtab")
-vim.opt.formatoptions:remove { "c", "r", "o" }
+vim.cmd("set nowrap")
+vim.cmd([[autocmd FileType * set formatoptions-=ro]])

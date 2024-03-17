@@ -21,6 +21,14 @@ local plugins = {
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
   "neovim/nvim-lspconfig",
+  "hrsh7th/cmp-nvim-lsp",
+  "hrsh7th/cmp-buffer",
+  "hrsh7th/cmp-path",
+  "hrsh7th/cmp-cmdline",
+  "hrsh7th/nvim-cmp",
+  {
+    "L3MON4D3/LuaSnip",
+  },
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
@@ -38,23 +46,82 @@ local plugins = {
       require("nordic").load()
     end,
   },
-  --	"mhartington/formatter.nvim",
+  "m4xshen/autoclose.nvim",
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "MunifTanjim/nui.nvim",
+      "3rd/image.nvim",
+    }
+  },
+  {
+    "stevearc/conform.nvim",
+    opts = {},
+  },
+  {
+    "stevearc/dressing.nvim",
+    init = function()
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.ui.select = function(...)
+        require("lazy").load({ plugins = { "dressing.nvim" } })
+        return vim.ui.select(...)
+      end
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.ui.input = function(...)
+        require("lazy").load({ plugins = { "dressing.nvim" } })
+        return vim.ui.input(...)
+      end
+    end,
+  },
 }
 
--- "requires" --
+-- Setups
 
 require("lazy").setup(plugins)
 require("mason").setup()
 require("mason-lspconfig").setup()
+local cmp = require("cmp")
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      require("luasnip").lsp_expand(args.body)
+    end,
+  },
+  mapping = cmp.mapping.preset.insert({
+    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-e>"] = cmp.mapping.abort(),
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+  }),
+  sources = cmp.config.sources({
+    { name = "nvim_lsp" },
+    { name = "luasnip" },
+    { name = "pyright" },
+  }, {
+    { name = "buffer" },
+  })
+})
+require("autoclose").setup()
+require("conform").setup({
+  formatters_by_ft = {
+    python = { "black", "isort" }
+  }
+})
+require("dressing").setup()
 
 -- LSP setups
+
 require("lspconfig").lua_ls.setup({
   settings = {
     Lua = {
-        diagnostics = {
-          globals = { "vim" }
-        }
+      diagnostics = {
+        globals = { "vim" }
+      }
     }
   }
 })
 require("lspconfig").pyright.setup({})
+require("lspconfig").clangd.setup({})
