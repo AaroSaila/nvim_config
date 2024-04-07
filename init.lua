@@ -75,6 +75,9 @@ local plugins = {
       end
     end,
   },
+  {
+    "mfussenegger/nvim-lint"
+  },
 }
 
 -- Setups
@@ -125,3 +128,7 @@ require("lspconfig").lua_ls.setup({
 })
 require("lspconfig").pyright.setup({})
 require("lspconfig").clangd.setup({})
+require("lint").linters_by_ft = {
+  c = { cpplint, },
+  cpp = { "cpplint", }
+}
