@@ -1,4 +1,4 @@
-local cpplint = require("lint").linters.cpplint
+cpplint = require("lint").linters.cpplint
 cpplint.args = {
   "--filter=-legal"
 }
