@@ -2,6 +2,7 @@
 
 vim.g.mapleader = " "
 
+
 -- Lazy Plugin Manager
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -80,6 +81,7 @@ local plugins = {
   },
 }
 
+
 -- Setups
 
 require("lazy").setup(plugins)
@@ -115,6 +117,20 @@ require("conform").setup({
 })
 require("dressing").setup()
 
+
+-- Linter setup
+
+local cpplint = require("lint").linters.cpplint
+cpplint.args = {
+  "--filter=-legal"
+}
+
+require("lint").linters_by_ft = {
+  c = { "cpplint", },
+  cpp = { "cpplint", }
+}
+
+
 -- LSP setups
 
 require("lspconfig").lua_ls.setup({
@@ -128,7 +144,3 @@ require("lspconfig").lua_ls.setup({
 })
 require("lspconfig").pyright.setup({})
 require("lspconfig").clangd.setup({})
-require("lint").linters_by_ft = {
-  c = { cpplint, },
-  cpp = { "cpplint", }
-}
