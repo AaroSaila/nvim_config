@@ -79,6 +79,21 @@ local plugins = {
   {
     "mfussenegger/nvim-lint"
   },
+  {
+    "SmiteshP/nvim-navic"
+  },
+  {
+    "utilyre/barbecue.nvim",
+    name = "barbecue",
+    version = "*",
+    dependencies = {
+      "SmiteshP/nvim-navic",
+      "nvim-tree/nvim-web-devicons",
+    },
+  },
+  {
+    "tamton-aquib/staline.nvim"
+  }
 }
 
 
@@ -116,7 +131,13 @@ require("conform").setup({
   }
 })
 require("dressing").setup()
-
+require("nvim-navic").setup({
+  lsp = {
+    auto_attach = true
+  }
+})
+require("barbecue").setup()
+require("staline").setup()
 
 -- Linter setup
 
@@ -144,3 +165,4 @@ require("lspconfig").lua_ls.setup({
 })
 require("lspconfig").pyright.setup({})
 require("lspconfig").clangd.setup({})
+require("lspconfig").jdtls.setup({})
