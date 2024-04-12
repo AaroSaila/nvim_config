@@ -1,3 +1,4 @@
+vim.cmd("colorscheme moonfly")
 vim.cmd("set nu")
 vim.cmd("set rnu")
 vim.cmd("set tabstop")
