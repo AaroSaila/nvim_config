@@ -21,7 +21,10 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
-  "nvim-treesitter/nvim-treesitter",
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate"
+  },
   "neovim/nvim-lspconfig",
   "hrsh7th/cmp-nvim-lsp",
   "hrsh7th/cmp-buffer",
@@ -139,10 +142,9 @@ require("nvim-navic").setup({
 })
 require("barbecue").setup()
 require("staline").setup()
-require("lazy").setup({{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"}})
+
 
 -- Linter setup
-
 local cpplint = require("lint").linters.cpplint
 cpplint.args = {
   "--filter=-legal"
