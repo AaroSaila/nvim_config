@@ -5,7 +5,6 @@ vim.keymap.set("n", "<Leader>f", vim.lsp.buf.format, { desc = "Format (LSP)" })
 vim.keymap.set("n", "<Leader>F", vim.cmd.Format, { desc = "Format (Formatter)" })
 vim.cmd("nnoremap <silent> <Leader>n :Neotree<CR>")
 vim.cmd("nnoremap <silent> <Leader>g :LspRestart<CR>")
-vim.cmd("nnoremap <silent> ;w :w<CR>")
 
 -- Window resizing
 vim.cmd("nnoremap <silent> <C-v> :vertical :resize -1<CR>")
