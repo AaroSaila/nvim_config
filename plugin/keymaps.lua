@@ -6,6 +6,10 @@ vim.keymap.set("n", "<Leader>F", vim.cmd.Format, { desc = "Format (Formatter)" }
 vim.cmd("nnoremap <silent> <Leader>n :Neotree<CR>")
 vim.cmd("nnoremap <silent> <Leader>g :LspRestart<CR>")
 
+-- Telescope
+local builtin = require("telescope.builtin")
+vim.keymap.set("n", "<Leader>t", builtin.find_files, {})
+
 -- Window resizing
 vim.cmd("nnoremap <silent> <C-v> :vertical :resize -1<CR>")
 vim.cmd("nnoremap <silent> <C-b> :vertical :resize +1<CR>")
