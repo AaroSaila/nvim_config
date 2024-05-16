@@ -98,6 +98,15 @@ local plugins = {
   {
     "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000
   },
+  {
+    "nvim-lua/plenary.nvim",
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+  },
+  {
+    "nvim-telescope/telescope-fzf-native.nvim", build = "make"
+  },
 }
 
 
@@ -106,6 +115,7 @@ local plugins = {
 require("lazy").setup(plugins)
 require("mason").setup()
 require("mason-lspconfig").setup()
+
 local cmp = require("cmp")
 cmp.setup({
   snippet = {
@@ -124,10 +134,12 @@ cmp.setup({
     { name = "nvim_lsp" },
     { name = "luasnip" },
     { name = "pyright" },
+    { name = "clangd" },
   }, {
     { name = "buffer" },
   })
 })
+
 require("autoclose").setup()
 require("conform").setup({
   formatters_by_ft = {
@@ -142,7 +154,7 @@ require("nvim-navic").setup({
 })
 require("barbecue").setup()
 require("staline").setup()
-
+require("telescope").setup()
 
 -- Linter setup
 local cpplint = require("lint").linters.cpplint
@@ -156,7 +168,6 @@ require("lint").linters_by_ft = {
 
 
 -- LSP setups
-
 require("lspconfig").lua_ls.setup({
   settings = {
     Lua = {
