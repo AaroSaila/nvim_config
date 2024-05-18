@@ -168,7 +168,8 @@ require("lint").linters_by_ft = {
 
 
 -- LSP setups
-require("lspconfig").lua_ls.setup({
+local lspconfig = require("lspconfig")
+lspconfig.lua_ls.setup({
   settings = {
     Lua = {
       diagnostics = {
@@ -177,6 +178,8 @@ require("lspconfig").lua_ls.setup({
     }
   }
 })
-require("lspconfig").pyright.setup({})
-require("lspconfig").clangd.setup({})
-require("lspconfig").jdtls.setup({})
+lspconfig.pyright.setup({})
+lspconfig.clangd.setup({})
+lspconfig.jdtls.setup({})
+lspconfig.biome.setup({})
+lspconfig.cssls.setup({})
