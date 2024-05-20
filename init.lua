@@ -25,7 +25,9 @@ local plugins = {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate"
   },
-  "neovim/nvim-lspconfig",
+  {
+    "neovim/nvim-lspconfig",
+  },
   "hrsh7th/cmp-nvim-lsp",
   "hrsh7th/cmp-buffer",
   "hrsh7th/cmp-path",
@@ -181,5 +183,5 @@ lspconfig.lua_ls.setup({
 lspconfig.pyright.setup({})
 lspconfig.clangd.setup({})
 lspconfig.jdtls.setup({})
-lspconfig.biome.setup({})
+lspconfig.denols.setup({})
 lspconfig.cssls.setup({})
