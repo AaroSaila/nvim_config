@@ -148,14 +148,14 @@ require("conform").setup({
     python = { "black", "isort" }
   }
 })
-require("dressing").setup()
+--require("dressing").setup()
 require("nvim-navic").setup({
   lsp = {
     auto_attach = true
   }
 })
 require("barbecue").setup()
-require("staline").setup()
+--require("staline").setup()
 require("telescope").setup()
 
 -- Linter setup

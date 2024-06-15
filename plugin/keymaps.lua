@@ -11,8 +11,8 @@ local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<Leader>t", builtin.find_files, {})
 
 -- Window resizing
-vim.cmd("nnoremap <silent> <C-v> :vertical :resize -1<CR>")
-vim.cmd("nnoremap <silent> <C-b> :vertical :resize +1<CR>")
+vim.cmd("nnoremap <silent> <M-v> :vertical :resize -1<CR>")
+vim.cmd("nnoremap <silent> <M-b> :vertical :resize +1<CR>")
 
 -- Split navigation
 vim.cmd("nnoremap <silent> <C-h> :wincmd h<CR>")
