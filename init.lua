@@ -139,6 +139,8 @@ cmp.setup({
     { name = "luasnip" },
     { name = "pyright" },
     { name = "clangd" },
+    { name = "eslint" },
+    { name = "tsserver" }
   }, {
     { name = "buffer" },
   })
@@ -185,5 +187,6 @@ lspconfig.lua_ls.setup({
 lspconfig.pyright.setup({})
 lspconfig.clangd.setup({})
 lspconfig.jdtls.setup({})
-lspconfig.denols.setup({})
 lspconfig.cssls.setup({})
+lspconfig.eslint.setup({})
+lspconfig.tsserver.setup({})
