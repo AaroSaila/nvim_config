@@ -140,7 +140,8 @@ cmp.setup({
     { name = "pyright" },
     { name = "clangd" },
     { name = "eslint" },
-    { name = "tsserver" }
+    { name = "ts_ls" },
+    { name = "jdtls" }
   }, {
     { name = "buffer" },
   })
