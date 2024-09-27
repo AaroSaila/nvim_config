@@ -152,14 +152,14 @@ require("conform").setup({
     python = { "black", "isort" }
   }
 })
---require("dressing").setup()
+require("dressing").setup()
 require("nvim-navic").setup({
   lsp = {
     auto_attach = true
   }
 })
 require("barbecue").setup()
---require("staline").setup()
+require("staline").setup()
 require("telescope").setup()
 
 -- Linter setup
@@ -169,7 +169,6 @@ cpplint.args = {
 }
 
 require("lint").linters_by_ft = {
-  cpp = { "cpplint", }
 }
 
 
@@ -189,4 +188,4 @@ lspconfig.clangd.setup({})
 lspconfig.jdtls.setup({})
 lspconfig.cssls.setup({})
 lspconfig.eslint.setup({})
-lspconfig.tsserver.setup({})
+lspconfig.ts_ls.setup({})
