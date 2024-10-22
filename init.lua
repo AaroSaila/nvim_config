@@ -163,6 +163,13 @@ require("barbecue").setup()
 require("staline").setup()
 require("telescope").setup()
 
+-- Treesitter
+require("nvim-treesitter.configs").setup {
+  highlight = {
+    enable = true
+  }
+}
+
 -- Linter setup
 local cpplint = require("lint").linters.cpplint
 cpplint.args = {
