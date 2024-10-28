@@ -112,6 +112,9 @@ local plugins = {
   {
     "terrortylor/nvim-comment"
   },
+  {
+    'brenoprata10/nvim-highlight-colors'
+  }
 }
 
 
@@ -144,10 +147,14 @@ cmp.setup({
     { name = "clangd" },
     { name = "eslint" },
     { name = "ts_ls" },
-    { name = "jdtls" }
+    { name = "jdtls" },
+    { name = "gopls" }
   }, {
     { name = "buffer" },
-  })
+  }),
+  formatting = {
+    format = require("nvim-highlight-colors").format
+  }
 })
 
 require("autoclose").setup()
@@ -166,6 +173,7 @@ require("barbecue").setup()
 require("staline").setup()
 require("telescope").setup()
 require("nvim_comment").setup()
+require("nvim-highlight-colors").setup({})
 
 -- Treesitter
 require("nvim-treesitter.configs").setup {
