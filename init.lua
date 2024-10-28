@@ -109,6 +109,9 @@ local plugins = {
   {
     "nvim-telescope/telescope-fzf-native.nvim", build = "make"
   },
+  {
+    "terrortylor/nvim-comment"
+  },
 }
 
 
@@ -162,6 +165,7 @@ require("nvim-navic").setup({
 require("barbecue").setup()
 require("staline").setup()
 require("telescope").setup()
+require("nvim_comment").setup()
 
 -- Treesitter
 require("nvim-treesitter.configs").setup {
@@ -195,6 +199,8 @@ lspconfig.pyright.setup({})
 lspconfig.clangd.setup({})
 lspconfig.jdtls.setup({})
 lspconfig.cssls.setup({})
-lspconfig.eslint.setup({})
+-- lspconfig.eslint.setup({})
 lspconfig.ts_ls.setup({})
 lspconfig.html.setup({})
+-- lspconfig.ast_grep.setup({})
+lspconfig.gopls.setup({})
