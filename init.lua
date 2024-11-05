@@ -52,6 +52,11 @@ local plugins = {
   },
   "m4xshen/autoclose.nvim",
   {
+    "3rd/image.nvim",
+    build = false,
+    opts = {}
+  },
+  {
     "nvim-neo-tree/neo-tree.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -174,6 +179,9 @@ require("staline").setup()
 require("telescope").setup()
 require("nvim_comment").setup()
 require("nvim-highlight-colors").setup({})
+require("image").setup({
+  processor = "magick_cli"
+})
 
 -- Treesitter
 require("nvim-treesitter.configs").setup {
