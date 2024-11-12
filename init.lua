@@ -119,6 +119,9 @@ local plugins = {
   },
   {
     'brenoprata10/nvim-highlight-colors'
+  },
+  {
+    "windwp/nvim-ts-autotag"
   }
 }
 
@@ -182,6 +185,7 @@ require("nvim-highlight-colors").setup({})
 require("image").setup({
   processor = "magick_cli"
 })
+require("nvim-ts-autotag").setup()
 
 -- Treesitter
 require("nvim-treesitter.configs").setup {
