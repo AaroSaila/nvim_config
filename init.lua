@@ -122,6 +122,9 @@ local plugins = {
   },
   {
     "windwp/nvim-ts-autotag"
+  },
+  {
+    "EdenEast/nightfox.nvim"
   }
 }
 
