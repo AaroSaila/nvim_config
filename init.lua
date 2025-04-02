@@ -114,9 +114,9 @@ local plugins = {
   {
     "nvim-telescope/telescope-fzf-native.nvim", build = "make"
   },
-  {
-    "terrortylor/nvim-comment"
-  },
+  -- {
+  --   "terrortylor/nvim-comment"
+  -- },
   {
     'brenoprata10/nvim-highlight-colors'
   },
@@ -159,7 +159,7 @@ cmp.setup({
     { name = "eslint" },
     { name = "ts_ls" },
     { name = "jdtls" },
-    { name = "gopls" }
+    { name = "gopls" },
   }, {
     { name = "buffer" },
   }),
@@ -171,7 +171,7 @@ cmp.setup({
 require("autoclose").setup()
 require("conform").setup({
   formatters_by_ft = {
-    python = { "black", "isort" }
+    -- python = { "black", "isort" }
   }
 })
 require("dressing").setup()
@@ -182,8 +182,16 @@ require("nvim-navic").setup({
 })
 require("barbecue").setup()
 require("staline").setup()
-require("telescope").setup()
-require("nvim_comment").setup()
+require("telescope").setup({
+  defaults = {
+    file_ignore_patterns = {
+      "node_modules/",
+      "build",
+      ".git/"
+    }
+  }
+})
+-- require("nvim_comment").setup()
 require("nvim-highlight-colors").setup({})
 require("image").setup({
   processor = "magick_cli"
