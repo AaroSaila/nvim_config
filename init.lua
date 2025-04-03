@@ -52,11 +52,6 @@ local plugins = {
   },
   "m4xshen/autoclose.nvim",
   {
-    "3rd/image.nvim",
-    build = false,
-    opts = {}
-  },
-  {
     "nvim-neo-tree/neo-tree.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -114,9 +109,6 @@ local plugins = {
   {
     "nvim-telescope/telescope-fzf-native.nvim", build = "make"
   },
-  -- {
-  --   "terrortylor/nvim-comment"
-  -- },
   {
     'brenoprata10/nvim-highlight-colors'
   },
