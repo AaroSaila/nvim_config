@@ -1,13 +1,20 @@
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Definition" })
-vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "References"})
-vim.keymap.set("n", "<Leader>f", vim.lsp.buf.format, { desc = "Format (LSP)" })
 vim.keymap.set("n", "<Leader>F", vim.cmd.Format, { desc = "Format (Formatter)" })
+vim.keymap.set("n", "<Leader>w", vim.cmd.write, { desc = "Write" })
 vim.keymap.set("i", "jj", "<ESC>")
 vim.cmd("nnoremap <silent> <Leader>n :Neotree<CR>")
 vim.cmd("nnoremap <silent> <Leader>g :LspRestart<CR>")
 vim.cmd("nnoremap <silent> <Leader>o :LspStop<CR>")
+vim.cmd("nnoremap <silent> <Leader>h :noh<CR>")
+
+-- LSP
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Definition" })
+vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "References" })
+vim.keymap.set("n", "<Leader>f", vim.lsp.buf.format, { desc = "Format (LSP)" })
+vim.keymap.set("n", "<Leader>r", vim.lsp.buf.rename, { desc = "Rename" })
+vim.keymap.set("n", "<Leader>a", vim.lsp.buf.code_action, { desc = "Code Action" })
+
 
 -- Telescope
 local builtin = require("telescope.builtin")

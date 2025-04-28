@@ -219,7 +219,9 @@ lspconfig.lua_ls.setup({
   }
 })
 lspconfig.pyright.setup({})
-lspconfig.clangd.setup({})
+lspconfig.clangd.setup({
+  cmd = { "clangd", "--query-driver=/usr/bin/arm-none-eabi-g*" }
+})
 lspconfig.jdtls.setup({})
 lspconfig.cssls.setup({})
 -- lspconfig.eslint.setup({})
@@ -227,3 +229,4 @@ lspconfig.ts_ls.setup({})
 lspconfig.html.setup({})
 -- lspconfig.ast_grep.setup({})
 lspconfig.gopls.setup({})
+lspconfig.cmake.setup({})
