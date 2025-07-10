@@ -117,7 +117,7 @@ local plugins = {
   },
   {
     "EdenEast/nightfox.nvim"
-  }
+  },
 }
 
 
@@ -208,8 +208,8 @@ require("lint").linters_by_ft = {
 
 
 -- LSP setups
-local lspconfig = require("lspconfig")
-lspconfig.lua_ls.setup({
+vim.lsp.enable("lua_ls")
+vim.lsp.config("lua_ls", {
   settings = {
     Lua = {
       diagnostics = {
@@ -218,15 +218,6 @@ lspconfig.lua_ls.setup({
     }
   }
 })
-lspconfig.pyright.setup({})
-lspconfig.clangd.setup({
-  cmd = { "clangd", "--query-driver=/usr/bin/arm-none-eabi-g*" }
-})
-lspconfig.jdtls.setup({})
-lspconfig.cssls.setup({})
--- lspconfig.eslint.setup({})
-lspconfig.ts_ls.setup({})
-lspconfig.html.setup({})
--- lspconfig.ast_grep.setup({})
-lspconfig.gopls.setup({})
-lspconfig.cmake.setup({})
+-- lspconfig.clangd.setup({
+--   cmd = { "clangd", "--query-driver=/usr/bin/arm-none-eabi-g*" }
+-- })
