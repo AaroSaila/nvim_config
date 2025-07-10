@@ -45,11 +45,6 @@ local plugins = {
     end,
     opts = {},
   },
-  {
-    "AlexvZyl/nordic.nvim",
-    lazy = false,
-    priority = 1000,
-  },
   "m4xshen/autoclose.nvim",
   {
     "3rd/image.nvim",
@@ -103,9 +98,6 @@ local plugins = {
     "tamton-aquib/staline.nvim"
   },
   {
-    "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000
-  },
-  {
     "nvim-lua/plenary.nvim",
   },
   {
@@ -114,17 +106,32 @@ local plugins = {
   {
     "nvim-telescope/telescope-fzf-native.nvim", build = "make"
   },
-  {
-    "terrortylor/nvim-comment"
-  },
+  -- {
+  --   "terrortylor/nvim-comment"
+  -- },
   {
     'brenoprata10/nvim-highlight-colors'
   },
   {
     "windwp/nvim-ts-autotag"
   },
+-- Colorschemes
+  {
+    "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000
+  },
+  {
+    "AlexvZyl/nordic.nvim",
+    lazy = false,
+    priority = 1000,
+  },
   {
     "EdenEast/nightfox.nvim"
+  },
+  {
+    "Shatur/neovim-ayu"
+  },
+  {
+    "navarasu/onedark.nvim"
   }
 }
 
@@ -159,7 +166,7 @@ cmp.setup({
     { name = "eslint" },
     { name = "ts_ls" },
     { name = "jdtls" },
-    { name = "gopls" }
+    { name = "gopls" },
   }, {
     { name = "buffer" },
   }),
@@ -182,13 +189,31 @@ require("nvim-navic").setup({
 })
 require("barbecue").setup()
 require("staline").setup()
-require("telescope").setup()
-require("nvim_comment").setup()
+require("telescope").setup({
+  defaults = {
+    file_ignore_patterns = {
+      "node_modules/",
+      "build",
+      ".git/"
+    }
+  }
+})
 require("nvim-highlight-colors").setup({})
 require("image").setup({
   processor = "magick_cli"
 })
 require("nvim-ts-autotag").setup()
+
+-- Colorscheme setups
+require("onedark").setup({
+  style = "darker",
+  colors = {
+    bg0 = "#000000"
+  },
+  code_style = {
+    comments = "none"
+  }
+});
 
 -- Treesitter
 require("nvim-treesitter.configs").setup {
@@ -208,8 +233,8 @@ require("lint").linters_by_ft = {
 
 
 -- LSP setups
-local lspconfig = require("lspconfig")
-lspconfig.lua_ls.setup({
+vim.lsp.enable("lua_ls")
+vim.lsp.config("lua_ls", {
   settings = {
     Lua = {
       diagnostics = {
@@ -218,12 +243,34 @@ lspconfig.lua_ls.setup({
     }
   }
 })
-lspconfig.pyright.setup({})
-lspconfig.clangd.setup({})
-lspconfig.jdtls.setup({})
-lspconfig.cssls.setup({})
+-- local lspconfig = require("lspconfig")
+-- lspconfig.lua_ls.setup({
+--   settings = {
+--     Lua = {
+--       diagnostics = {
+--         globals = { "vim" }
+--       }
+--     }
+--   }
+-- })
+-- lspconfig.pyright.setup({})
+-- lspconfig.clangd.setup({
+--   cmd = {
+--     "clangd",
+--     "--query-driver=/usr/bin/gcc",
+--     "--query-driver=/usr/bin/arm-none-eabi-gcc",
+--     "--query-driver=/user/bin/arm-none-eabi-g++"
+--   }
+-- })
+-- lspconfig.jdtls.setup({})
+-- lspconfig.cssls.setup({})
 -- lspconfig.eslint.setup({})
-lspconfig.ts_ls.setup({})
-lspconfig.html.setup({})
+--lspconfig.ts_ls.setup({})
+-- vim.lsp.enable("ts_ls")
+-- lspconfig.html.setup({})
 -- lspconfig.ast_grep.setup({})
-lspconfig.gopls.setup({})
+--lspconfig.gopls.setup({})
+-- vim.lsp.enable("gopls")
+-- lspconfig.dockerls.setup({})
+-- lspconfig.docker_compose_language_service.setup({})
+-- vim.lsp.enable("gdscript")
