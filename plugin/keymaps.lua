@@ -14,7 +14,7 @@ vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "References" })
 vim.keymap.set("n", "<Leader>f", vim.lsp.buf.format, { desc = "Format (LSP)" })
 vim.keymap.set("n", "<Leader>r", vim.lsp.buf.rename, { desc = "Rename" })
 vim.keymap.set("n", "<Leader>a", vim.lsp.buf.code_action, { desc = "Code Action" })
-
+vim.keymap.set("n", "<Leader>l", vim.cmd.OrganizeImports, { desc = "Organize Imports" })
 
 -- Telescope
 local builtin = require("telescope.builtin")
