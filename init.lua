@@ -243,6 +243,7 @@ vim.lsp.config("lua_ls", {
     }
   }
 })
+
 -- local lspconfig = require("lspconfig")
 -- lspconfig.lua_ls.setup({
 --   settings = {
@@ -262,15 +263,3 @@ vim.lsp.config("lua_ls", {
 --     "--query-driver=/user/bin/arm-none-eabi-g++"
 --   }
 -- })
--- lspconfig.jdtls.setup({})
--- lspconfig.cssls.setup({})
--- lspconfig.eslint.setup({})
---lspconfig.ts_ls.setup({})
--- vim.lsp.enable("ts_ls")
--- lspconfig.html.setup({})
--- lspconfig.ast_grep.setup({})
---lspconfig.gopls.setup({})
--- vim.lsp.enable("gopls")
--- lspconfig.dockerls.setup({})
--- lspconfig.docker_compose_language_service.setup({})
--- vim.lsp.enable("gdscript")
