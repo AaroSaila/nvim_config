@@ -23,10 +23,3 @@ local function organizeImports()
 end
 
 vim.api.nvim_create_user_command("OrganizeImports", organizeImports, {})
-
-
-local function tabSplit()
-  vim.cmd("tab split")
-end
-
-vim.api.nvim_create_user_command("TabSplit", tabSplit, {})

@@ -39,6 +39,6 @@ vim.cmd("nnoremap <A-l> <C-w>l")
 
 
 -- Tab navigation
-vim.keymap.set("n", "<Leader>ts", vim.cmd.TabSplit, { desc = "tab split" })
+vim.keymap.set("n", "<Leader>ts", ":tab split<CR>", { desc = "tab split" })
 vim.keymap.set("n", "<C-m>", "gt")
 vim.keymap.set("n", "<C-n>", "gT")
