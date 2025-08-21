@@ -218,6 +218,8 @@ vim.lsp.config("lua_ls", {
     }
   }
 })
--- lspconfig.clangd.setup({
---   cmd = { "clangd", "--query-driver=/usr/bin/arm-none-eabi-g*" }
--- })
+
+vim.lsp.enable("clangd")
+vim.lsp.config("clangd", {
+  cmd = { "clangd", "--query-driver=/usr/bin/arm-none-eabi-g*" }
+})
