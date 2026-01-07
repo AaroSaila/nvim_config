@@ -16,8 +16,7 @@ vim.cmd("nnoremap <silent> <Leader>g :LspRestart<CR>")
 vim.cmd("nnoremap <silent> <Leader>o :LspStop<CR>")
 
 -- Telescope
-local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<Leader>t", builtin.find_files, {})
+vim.keymap.set("n", "<Leader>t", require("telescope.builtin").find_files, {})
 
 -- Window resizing
 vim.cmd("nnoremap <silent> <M-v> :vertical :resize -1<CR>")
@@ -39,6 +38,9 @@ vim.cmd("nnoremap <A-l> <C-w>l")
 
 
 -- Tab navigation
-vim.keymap.set("n", "<Leader>ts", ":tab split<CR>", { desc = "tab split" })
+vim.keymap.set("n", "<C-t>", vim.cmd.tabnew)
 vim.keymap.set("n", "<C-m>", "gt")
 vim.keymap.set("n", "<C-n>", "gT")
+
+vim.keymap.set("n", "<Leader>st", "istd::")
+vim.keymap.set("n", "<Leader>en", "oif err != nil {\n}<ESC>ko")
