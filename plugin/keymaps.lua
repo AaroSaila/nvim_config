@@ -12,6 +12,11 @@ vim.keymap.set("n", "<Leader>f", vim.lsp.buf.format, { desc = "Format (LSP)" })
 vim.keymap.set("n", "<Leader>a", vim.lsp.buf.code_action, { desc = "Code Action" })
 vim.keymap.set("n", "<Leader>r", vim.lsp.buf.rename, { desc = "Rename" })
 vim.keymap.set("n", "<Leader>l", vim.cmd.OrganizeImports, { desc = "Organize Imports" })
+
+local function toggle_inlay_hints()
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end
+vim.keymap.set("n", "<Leader>i", toggle_inlay_hints, { desc = "Toggle inlay hints" })
 vim.cmd("nnoremap <silent> <Leader>g :LspRestart<CR>")
 vim.cmd("nnoremap <silent> <Leader>o :LspStop<CR>")
 

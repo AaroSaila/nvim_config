@@ -222,17 +222,6 @@ require("image").setup({
 })
 require("nvim-ts-autotag").setup()
 
--- Colorscheme setups
-require("onedark").setup({
-  style = "darker",
-  colors = {
-    bg0 = "#000000"
-  },
-  code_style = {
-    comments = "none"
-  }
-});
-
 -- Treesitter
 require("nvim-treesitter.configs").setup {
     highlight = {
@@ -285,7 +274,7 @@ vim.lsp.config("lua_ls", {
 
 vim.lsp.config("clangd", {
     -- cmd = { "clangd", "--query-driver=/usr/bin/arm-none-eabi-g*:/home/aaro/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/bin/*" }
-    cmd = { "clangd", "--query-driver=/home/aaro/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/bin/*" }
+    cmd = { "clangd", "--query-driver=/home/aaro/.espressif/tools/riscv32-esp-elf/esp-14.2.0_20241119/riscv32-esp-elf/bin/*,/home/aaro/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/bin/*" }
 })
 
 -- vim.lsp.config("denols", {
