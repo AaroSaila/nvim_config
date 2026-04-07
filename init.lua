@@ -19,6 +19,11 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
     {
+        'nvim-treesitter/nvim-treesitter',
+        lazy = false,
+        build = ':TSUpdate'
+    },
+    {
         "williamboman/mason.nvim",
     },
     {
@@ -133,7 +138,7 @@ local plugins = {
     },
     {
         'MeanderingProgrammer/render-markdown.nvim',
-        dependencies = {'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+        dependencies = { 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
         ---@module 'render-markdown'
         ---@type render.md.UserConfig
         opts = {},

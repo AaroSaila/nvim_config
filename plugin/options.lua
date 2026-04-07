@@ -11,6 +11,7 @@ vim.opt.scrolloff = 8
 vim.opt.termguicolors = true
 vim.opt.winborder = "rounded"
 vim.opt.signcolumn = "yes:1"
+vim.opt.foldlevel = 9999
 
 vim.diagnostic.config({
   virtual_text = true,
