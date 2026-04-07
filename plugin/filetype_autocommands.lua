@@ -1,5 +1,5 @@
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "go" },
+    pattern = { "go", "sql" },
     callback = function()
         vim.treesitter.start()
         vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
