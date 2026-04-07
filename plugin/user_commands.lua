@@ -1,3 +1,6 @@
+vim.cmd("cnoreabbrev vMan vertical botright Man")
+vim.cmd("cnoreabbrev vhelp vertical botright help")
+
 vim.api.nvim_create_user_command("Format", function(args)
   local range = nil
   if args.count ~= -1 then
@@ -23,3 +26,4 @@ local function organizeImports()
 end
 
 vim.api.nvim_create_user_command("OrganizeImports", organizeImports, {})
+
