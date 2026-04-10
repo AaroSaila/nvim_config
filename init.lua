@@ -18,20 +18,40 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
     {
-        "nvim-treesitter/nvim-treesitter",
-        build = ":TSUpdate"
+        'nvim-treesitter/nvim-treesitter',
+        lazy = false,
+        build = ':TSUpdate'
+    },
+    {
+        "williamboman/mason.nvim",
+    },
+    {
+        "mason-org/mason-lspconfig.nvim",
+        opts = {},
+        dependencies = {
+            { "mason-org/mason.nvim", opts = {} },
+            { "neovim/nvim-lspconfig" },
+        },
     },
     {
         "neovim/nvim-lspconfig",
     },
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
-    "hrsh7th/cmp-cmdline",
-    "hrsh7th/nvim-cmp",
+    {
+        "hrsh7th/cmp-nvim-lsp",
+    },
+    {
+        "hrsh7th/cmp-buffer",
+    },
+    {
+        "hrsh7th/cmp-path",
+    },
+    {
+        "hrsh7th/cmp-cmdline",
+    },
+    {
+        "hrsh7th/nvim-cmp",
+    },
     {
         "L3MON4D3/LuaSnip",
     },
@@ -49,37 +69,36 @@ local plugins = {
         lazy = false,
         priority = 1000,
     },
-    "m4xshen/autoclose.nvim",
-    {
-        "nvim-neo-tree/neo-tree.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-tree/nvim-web-devicons",
-            "MunifTanjim/nui.nvim",
-            "3rd/image.nvim",
-        }
-    },
-    {
-        "3rd/image.nvim",
-    },
+    -- {
+    --     "m4xshen/autoclose.nvim",
+    -- },
     {
         "stevearc/conform.nvim",
         opts = {},
     },
     {
-        "stevearc/dressing.nvim",
-        init = function()
-            ---@diagnostic disable-next-line: duplicate-set-field
-            vim.ui.select = function(...)
-                require("lazy").load({ plugins = { "dressing.nvim" } })
-                return vim.ui.select(...)
-            end
-            ---@diagnostic disable-next-line: duplicate-set-field
-            vim.ui.input = function(...)
-                require("lazy").load({ plugins = { "dressing.nvim" } })
-                return vim.ui.input(...)
-            end
-        end,
+        "folke/snacks.nvim",
+        priority = 1000,
+        lazy = false,
+        ---@type snacks.Config
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+            bigfile = { enabled = true },
+            -- dashboard = { enabled = true },
+            explorer = { enabled = true, replace_netrw = true },
+            indent = { enabled = true },
+            input = { enabled = true },
+            picker = { enabled = true },
+            -- notifier = { enabled = true },
+            quickfile = { enabled = true },
+            scope = { enabled = true },
+            -- scroll = { enabled = true },
+            -- statuscolumn = { enabled = true },
+            words = { enabled = true },
+            lazygit = { enabled = true, configure = true },
+        },
     },
     {
         "mfussenegger/nvim-lint"
@@ -95,9 +114,6 @@ local plugins = {
             "SmiteshP/nvim-navic",
             "nvim-tree/nvim-web-devicons",
         },
-    },
-    {
-        "tamton-aquib/staline.nvim"
     },
     {
         "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000
@@ -120,6 +136,13 @@ local plugins = {
     {
         "EdenEast/nightfox.nvim"
     },
+    {
+        'MeanderingProgrammer/render-markdown.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+        ---@module 'render-markdown'
+        ---@type render.md.UserConfig
+        opts = {},
+    },
 }
 
 
@@ -131,6 +154,10 @@ require("mason-lspconfig").setup()
 
 local cmp = require("cmp")
 cmp.setup({
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+    },
     snippet = {
         expand = function(args)
             require("luasnip").lsp_expand(args.body)
@@ -146,8 +173,19 @@ cmp.setup({
         ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), { "i" }),
     }),
     sources = cmp.config.sources({
+        {
+            name = "path",
+            option = {
+                pathMappings = {
+                    ["@"] = "${folder}/src",
+                    -- ["/"] = "${folder}/src/public/",
+                    -- ["~@"] = "${folder}/src",
+                    -- ["/images"] = "${folder}/src/images",
+                    -- ["/components"] = "${folder}/src/components",
+                }
+            }
+        },
         { name = "nvim_lsp" },
-        { name = "cmp-path" },
         { name = "luasnip" },
         { name = "pyright" },
         { name = "clangd" },
@@ -155,7 +193,6 @@ cmp.setup({
         { name = "ts_ls" },
         { name = "jdtls" },
         { name = "gopls" },
-    }, {
         { name = "buffer" },
     }),
     formatting = {
@@ -163,24 +200,17 @@ cmp.setup({
     }
 })
 
-require("autoclose").setup({
-    keys = {
-        ["'"] = { escape = false, close = false },
-    }
-})
 require("conform").setup({
     formatters_by_ft = {
         -- python = { "black", "isort" }
     }
 })
-require("dressing").setup()
 require("nvim-navic").setup({
     lsp = {
         auto_attach = true
     }
 })
 require("barbecue").setup()
-require("staline").setup()
 require("telescope").setup({
     defaults = {
         file_ignore_patterns = {
@@ -190,19 +220,11 @@ require("telescope").setup({
         }
     }
 })
--- require("nvim_comment").setup()
 require("nvim-highlight-colors").setup({})
-require("image").setup({
-    processor = "magick_cli"
-})
+-- require("image").setup({
+--     processor = "magick_cli"
+-- })
 require("nvim-ts-autotag").setup()
-
--- Treesitter
-require("nvim-treesitter.configs").setup {
-    highlight = {
-        enable = true
-    }
-}
 
 -- Linter setup
 local cpplint = require("lint").linters.cpplint
@@ -217,20 +239,42 @@ require("lint").linters_by_ft = {
 -- LSP setups
 vim.lsp.enable({
     "lua_ls",
-    "clangd"
+    "clangd",
+    "pyright",
+    "gopls",
+    "ts_ls",
+    "glsl_analyzer"
 })
 
 vim.lsp.config("lua_ls", {
     settings = {
         Lua = {
             diagnostics = {
-                globals = { "vim" }
+                globals = { "vim", "Snacks" }
             }
         }
     }
 })
 
 vim.lsp.config("clangd", {
-    -- cmd = { "clangd", "--query-driver=/usr/bin/arm-none-eabi-g*" }
-    cmd = { "clangd", "--query-driver=/usr/bin/arm-none-eabi-g*,/home/aaro/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/bin/*,/home/aaro/.espressif/tools/riscv32-esp-elf/esp-14.2.0_20241119/riscv32-esp-elf/bin/*" }
+    -- cmd = { "clangd", "--query-driver=/usr/bin/arm-none-eabi-g*:/home/aaro/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/bin/*" }
+    cmd = { "clangd", "--query-driver=/usr/bin/arm-none-eabi-g*,/home/aaro/.espressif/tools/riscv32-esp-elf/esp-14.2.0_20241119/riscv32-esp-elf/bin/*,/home/aaro/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/bin/*" }
 })
+
+-- vim.lsp.config("denols", {
+--     settings = {
+--         deno = {
+--             inlayHints = {
+--                 parameterTypes = {
+--                     enabled = true
+--                 },
+--                 propertyDeclarationTypes = {
+--                     enabled = true
+--                 },
+--                 variableTypes = {
+--                     enabled = true
+--                 }
+--             }
+--         }
+--     }
+-- })

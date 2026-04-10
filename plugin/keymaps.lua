@@ -2,18 +2,16 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<Leader>F", vim.cmd.Format, { desc = "Format (Formatter)" })
 vim.keymap.set("n", "<Leader>w", vim.cmd.write, { desc = "Write" })
--- vim.keymap.set("i", "jj", "<ESC>")
-vim.cmd("nnoremap <silent> <Leader>n :Neotree<CR>")
-vim.cmd("nnoremap <silent> <Leader>g :LspRestart<CR>")
-vim.cmd("nnoremap <silent> <Leader>o :LspStop<CR>")
+vim.keymap.set("n", "<Leader>n", Snacks.explorer.open, { desc = "File Explorer" })
 vim.cmd("nnoremap <silent> <Leader>h :noh<CR>")
+vim.keymap.set("n", "<Leader>p", Snacks.lazygit.open, { desc = "Lazygit" })
+vim.keymap.set("n", "<leader>m", function() vim.cmd("vertical botright Man") end, { desc = "Man" })
+vim.keymap.set("n", "<Leader>{", "i{<ESC>ea}<ESC>", { desc = "{}" })
+vim.keymap.set("n", "<Leader>\"", "i\"<ESC>ea\"<ESC>", { desc = "\"\"" })
 
 -- LSP
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Definition" })
-vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "References" })
 vim.keymap.set("n", "<Leader>f", vim.lsp.buf.format, { desc = "Format (LSP)" })
-vim.keymap.set("n", "<Leader>r", vim.lsp.buf.rename, { desc = "Rename" })
-vim.keymap.set("n", "<Leader>a", vim.lsp.buf.code_action, { desc = "Code Action" })
 vim.keymap.set("n", "<Leader>l", vim.cmd.OrganizeImports, { desc = "Organize Imports" })
 
 local function toggle_inlay_hints()
@@ -22,8 +20,7 @@ end
 vim.keymap.set("n", "<Leader>i", toggle_inlay_hints, { desc = "Toggle inlay hints" })
 
 -- Telescope
-local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<Leader>t", builtin.find_files, {})
+vim.keymap.set("n", "<Leader>t", require("telescope.builtin").find_files, {})
 
 -- Window resizing
 vim.cmd("nnoremap <silent> <M-v> :vertical :resize -1<CR>")
@@ -49,10 +46,20 @@ vim.cmd("nnoremap <A-l> <C-w>l")
 -- vim.cmd("nnoremap <silent> <C-l> :wincmd l<CR>")
 
 -- Tab navigation
+vim.keymap.set("n", "<C-t>", vim.cmd.tabnew)
 vim.keymap.set("n", "<C-m>", "gt")
-vim.keymap.set("n", "<C-n>", "gT")
 vim.keymap.set("n", "<C-n>", "gT")
 
 vim.keymap.set("n", "<Leader>st", "istd::")
 vim.keymap.set("n", "<Leader>en", "oif err != nil {\n}<ESC>ko")
 
+-- command-line navigation
+vim.cmd(":cnoremap <C-A> <Home>")
+vim.cmd(":cnoremap <C-B> <Left>")
+vim.cmd(":cnoremap <C-D> <Del>")
+vim.cmd(":cnoremap <C-E> <End>")
+vim.cmd(":cnoremap <C-F> <Right>")
+vim.cmd(":cnoremap <C-N> <Down>")
+vim.cmd(":cnoremap <C-P> <Up>")
+vim.cmd(":cnoremap <Esc><C-B> <S-Left>")
+vim.cmd(":cnoremap <Esc><C-F> <S-Right>")
