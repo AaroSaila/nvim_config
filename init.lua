@@ -208,6 +208,7 @@ cmp.setup({
 require("conform").setup({
     formatters_by_ft = {
         -- python = { "black", "isort" }
+        json = { "prettier" }
     }
 })
 require("nvim-navic").setup({
