@@ -8,6 +8,7 @@ vim.keymap.set("n", "<Leader>p", Snacks.lazygit.open, { desc = "Lazygit" })
 vim.keymap.set("n", "<leader>m", function() vim.cmd("vertical botright Man") end, { desc = "Man" })
 vim.keymap.set("n", "<Leader>{", "i{<ESC>ea}<ESC>", { desc = "{}" })
 vim.keymap.set("n", "<Leader>\"", "i\"<ESC>ea\"<ESC>", { desc = "\"\"" })
+vim.keymap.set("n", "<Leader>s", vim.treesitter.start, { desc = "treesitter start" })
 
 -- LSP
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Definition" })
@@ -46,11 +47,10 @@ vim.cmd("nnoremap <A-l> <C-w>l")
 -- vim.cmd("nnoremap <silent> <C-l> :wincmd l<CR>")
 
 -- Tab navigation
-vim.keymap.set("n", "<C-t>", vim.cmd.tabnew, { remap = true }) -- Overrides Snacks terminal opening keymap
-vim.keymap.set("n", "<C-m>", "gt")
-vim.keymap.set("n", "<C-n>", "gT")
+vim.keymap.set("n", "<C-t>", vim.cmd.tabnew)
+vim.keymap.set("n", "<A-m>", "gt")
+vim.keymap.set("n", "<A-n>", "gT")
 
-vim.keymap.set("n", "<Leader>st", "istd::")
 vim.keymap.set("n", "<Leader>en", "oif err != nil {\n}<ESC>ko")
 
 -- command-line navigation

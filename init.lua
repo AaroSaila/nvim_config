@@ -246,6 +246,16 @@ vim.lsp.enable({
     "glsl_analyzer"
 })
 
+vim.lsp.config("*", {
+    capabilities = {
+        workspace = {
+            didChangeWatchedFiles = {
+                dynamicRegistration = true
+            }
+        }
+    }
+})
+
 vim.lsp.config("lua_ls", {
     settings = {
         Lua = {
