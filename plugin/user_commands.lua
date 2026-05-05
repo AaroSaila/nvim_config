@@ -1,5 +1,6 @@
 vim.cmd("cnoreabbrev vMan vertical botright Man")
 vim.cmd("cnoreabbrev vhelp vertical botright help")
+vim.cmd("cnoreabbrev todog vimgrep /\\ctodo/")
 
 vim.api.nvim_create_user_command("Format", function(args)
   local range = nil
@@ -27,3 +28,10 @@ end
 
 vim.api.nvim_create_user_command("OrganizeImports", organizeImports, {})
 
+vim.api.nvim_create_user_command(
+    "Todogg",
+    function()
+        vim.cmd("vimgrep /\\ctodo/ ./**/src/**/*.go")
+    end,
+    {}
+)
