@@ -64,11 +64,6 @@ local plugins = {
         end,
         opts = {},
     },
-    {
-        "AlexvZyl/nordic.nvim",
-        lazy = false,
-        priority = 1000,
-    },
     -- {
     --     "m4xshen/autoclose.nvim",
     -- },
@@ -116,9 +111,6 @@ local plugins = {
         },
     },
     {
-        "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000
-    },
-    {
         "nvim-lua/plenary.nvim",
     },
     {
@@ -134,15 +126,22 @@ local plugins = {
         "windwp/nvim-ts-autotag"
     },
     {
-        "EdenEast/nightfox.nvim"
+        'MeanderingProgrammer/render-markdown.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+        ---@module 'render-markdown'
+        ---@type render.md.UserConfig
+        opts = {},
     },
-    -- {
-    --     'MeanderingProgrammer/render-markdown.nvim',
-    --     dependencies = { 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-    --     ---@module 'render-markdown'
-    --     ---@type render.md.UserConfig
-    --     opts = {},
-    -- },
+
+    -- Color schemes
+    {
+        "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000
+    },
+    {
+        "AlexvZyl/nordic.nvim",
+        lazy = false,
+        priority = 1000,
+    },
 }
 
 
@@ -203,6 +202,7 @@ cmp.setup({
 require("conform").setup({
     formatters_by_ft = {
         -- python = { "black", "isort" }
+        json = { "prettier" }
     }
 })
 require("nvim-navic").setup({

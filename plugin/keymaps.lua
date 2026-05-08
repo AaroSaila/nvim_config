@@ -1,14 +1,16 @@
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "<Leader>F", vim.cmd.Format, { desc = "Format (Formatter)" })
+vim.keymap.set("n", "<Leader>F", require("conform").format, { desc = "Format (Formatter)" })
 vim.keymap.set("n", "<Leader>w", vim.cmd.write, { desc = "Write" })
 vim.keymap.set("n", "<Leader>n", Snacks.explorer.open, { desc = "File Explorer" })
 vim.cmd("nnoremap <silent> <Leader>h :noh<CR>")
 vim.keymap.set("n", "<Leader>p", Snacks.lazygit.open, { desc = "Lazygit" })
 vim.keymap.set("n", "<leader>m", function() vim.cmd("vertical botright Man") end, { desc = "Man" })
+vim.keymap.set("n", "<Leader>s", vim.treesitter.start, { desc = "treesitter start" })
+
+-- Surrounds
 vim.keymap.set("n", "<Leader>{", "i{<ESC>ea}<ESC>", { desc = "{}" })
 vim.keymap.set("n", "<Leader>\"", "i\"<ESC>ea\"<ESC>", { desc = "\"\"" })
-vim.keymap.set("n", "<Leader>s", vim.treesitter.start, { desc = "treesitter start" })
 
 -- LSP
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Definition" })
@@ -19,9 +21,13 @@ local function toggle_inlay_hints()
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end
 vim.keymap.set("n", "<Leader>i", toggle_inlay_hints, { desc = "Toggle inlay hints" })
+vim.keymap.set("n", "<Leader>g", ":lsp restart<CR>", { desc = "LSP restart" })
+vim.keymap.set("n", "<Leader>o", ":lsp stop<CR>", { desc = "LSP stop" })
 
 -- Telescope
-vim.keymap.set("n", "<Leader>t", require("telescope.builtin").find_files, {})
+local telescope = require("telescope.builtin")
+vim.keymap.set("n", "<Leader>tf", telescope.find_files, { desc = "Telescope files" })
+vim.keymap.set("n", "<Leader>th", telescope.help_tags, { desc = "Telescope help tags" })
 
 -- Window resizing
 vim.cmd("nnoremap <silent> <M-v> :vertical :resize -1<CR>")
