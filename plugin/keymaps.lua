@@ -1,6 +1,6 @@
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "<Leader>F", require("conform").format, { desc = "Format (Formatter)" })
+vim.keymap.set("n", "<Leader>ff", require("conform").format, { desc = "Format (Formatter)" })
 vim.keymap.set("n", "<Leader>w", vim.cmd.write, { desc = "Write" })
 vim.keymap.set("n", "<Leader>n", Snacks.explorer.open, { desc = "File Explorer" })
 vim.cmd("nnoremap <silent> <Leader>h :noh<CR>")
@@ -14,7 +14,8 @@ vim.keymap.set("n", "<Leader>\"", "i\"<ESC>ea\"<ESC>", { desc = "\"\"" })
 
 -- LSP
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Definition" })
-vim.keymap.set("n", "<Leader>f", vim.lsp.buf.format, { desc = "Format (LSP)" })
+vim.keymap.set("n", "<Leader>fl", vim.lsp.buf.format, { desc = "Format (LSP)" })
+vim.keymap.set("n", "<Leader>fc", vim.cmd.FormatChooseLsp, { desc = "Format (Choose lsp)" })
 vim.keymap.set("n", "<Leader>l", vim.cmd.OrganizeImports, { desc = "Organize Imports" })
 
 local function toggle_inlay_hints()

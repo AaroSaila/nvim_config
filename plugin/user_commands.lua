@@ -35,3 +35,20 @@ vim.api.nvim_create_user_command(
     end,
     {}
 )
+
+vim.api.nvim_create_user_command("FormatChooseLsp", function()
+    local current_buf = vim.api.nvim_get_current_buf()
+    local client_names = {}
+    for _, client in pairs(vim.lsp.get_clients({ bufnr = current_buf })) do
+        table.insert(client_names, client.name)
+    end
+    vim.ui.select(client_names, { prompt = "Choose LSP" }, function(chosen_client, _)
+        vim.lsp.buf.format({
+            bufnr = current_buf,
+            filter = function(client)
+                return client.name == chosen_client
+            end
+        })
+    end)
+end, {})
+
