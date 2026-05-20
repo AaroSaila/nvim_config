@@ -104,7 +104,7 @@ local plugins = {
             "nvim-tree/nvim-web-devicons", -- optional, but recommended
             "antosha417/nvim-lsp-file-operations",
         },
-        lazy = false,                -- neo-tree will lazily load itself
+        lazy = false, -- neo-tree will lazily load itself
     },
     {
         "mfussenegger/nvim-lint"
@@ -231,6 +231,15 @@ require("nvim-highlight-colors").setup({})
 --     processor = "magick_cli"
 -- })
 require("nvim-ts-autotag").setup()
+
+require("neo-tree").setup({
+    window = {
+        width = 30
+    },
+    follow_current_file = {
+        enabled = true
+    }
+})
 
 -- Linter setup
 local cpplint = require("lint").linters.cpplint
