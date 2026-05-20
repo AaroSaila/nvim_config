@@ -71,29 +71,40 @@ local plugins = {
         "stevearc/conform.nvim",
         opts = {},
     },
+    -- {
+    --     "folke/snacks.nvim",
+    --     priority = 1000,
+    --     lazy = false,
+    --     ---@type snacks.Config
+    --     opts = {
+    --         -- your configuration comes here
+    --         -- or leave it empty to use the default settings
+    --         -- refer to the configuration section below
+    --         bigfile = { enabled = true },
+    --         -- dashboard = { enabled = true },
+    --         explorer = { enabled = true, replace_netrw = true },
+    --         indent = { enabled = true },
+    --         input = { enabled = true },
+    --         picker = { enabled = true },
+    --         -- notifier = { enabled = true },
+    --         quickfile = { enabled = true },
+    --         scope = { enabled = true },
+    --         -- scroll = { enabled = true },
+    --         -- statuscolumn = { enabled = true },
+    --         words = { enabled = true },
+    --         lazygit = { enabled = true, configure = true },
+    --     },
+    -- },
     {
-        "folke/snacks.nvim",
-        priority = 1000,
-        lazy = false,
-        ---@type snacks.Config
-        opts = {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
-            bigfile = { enabled = true },
-            -- dashboard = { enabled = true },
-            explorer = { enabled = true, replace_netrw = true },
-            indent = { enabled = true },
-            input = { enabled = true },
-            picker = { enabled = true },
-            -- notifier = { enabled = true },
-            quickfile = { enabled = true },
-            scope = { enabled = true },
-            -- scroll = { enabled = true },
-            -- statuscolumn = { enabled = true },
-            words = { enabled = true },
-            lazygit = { enabled = true, configure = true },
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "MunifTanjim/nui.nvim",
+            "nvim-tree/nvim-web-devicons", -- optional, but recommended
+            "antosha417/nvim-lsp-file-operations",
         },
+        lazy = false,                -- neo-tree will lazily load itself
     },
     {
         "mfussenegger/nvim-lint"
@@ -136,11 +147,6 @@ local plugins = {
     -- Color schemes
     {
         "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000
-    },
-    {
-        "AlexvZyl/nordic.nvim",
-        lazy = false,
-        priority = 1000,
     },
 }
 
@@ -234,7 +240,6 @@ cpplint.args = {
 
 require("lint").linters_by_ft = {
 }
-
 
 -- LSP setups
 vim.lsp.enable({
