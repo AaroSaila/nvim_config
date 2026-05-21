@@ -234,7 +234,8 @@ require("nvim-ts-autotag").setup()
 
 require("neo-tree").setup({
     window = {
-        width = 30
+        width = 30,
+        auto_expand_width = true
     },
     follow_current_file = {
         enabled = true
