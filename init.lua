@@ -105,6 +105,17 @@ local plugins = {
             "antosha417/nvim-lsp-file-operations",
         },
         lazy = false, -- neo-tree will lazily load itself
+        ---@module "neo-tree"
+        ---@type neotree.Config?
+        opts = {
+            window = {
+                width = 30,
+                auto_expand_width = true
+            },
+            follow_current_file = {
+                enabled = true
+            },
+        }
     },
     {
         "mfussenegger/nvim-lint"
@@ -126,6 +137,9 @@ local plugins = {
     },
     {
         "nvim-telescope/telescope.nvim",
+    },
+    {
+        "nvim-telescope/telescope-ui-select.nvim"
     },
     {
         "nvim-telescope/telescope-fzf-native.nvim", build = "make"
@@ -224,23 +238,19 @@ require("telescope").setup({
             "build",
             ".git/"
         }
+    },
+    extensions = {
+        ["ui-select"] = {
+            require("telescope.themes").get_dropdown({})
+        }
     }
 })
+require("telescope").load_extension("ui-select")
 require("nvim-highlight-colors").setup({})
 -- require("image").setup({
 --     processor = "magick_cli"
 -- })
 require("nvim-ts-autotag").setup()
-
-require("neo-tree").setup({
-    window = {
-        width = 30,
-        auto_expand_width = true
-    },
-    follow_current_file = {
-        enabled = true
-    }
-})
 
 -- Linter setup
 local cpplint = require("lint").linters.cpplint
