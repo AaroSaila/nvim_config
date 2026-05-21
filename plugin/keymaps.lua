@@ -1,9 +1,10 @@
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<Leader>w", vim.cmd.write, { desc = "Write" })
-vim.keymap.set("n", "<Leader>n", Snacks.explorer.open, { desc = "File Explorer" })
+-- vim.keymap.set("n", "<Leader>n", Snacks.explorer.open, { desc = "File Explorer" })
+vim.keymap.set("n", "<Leader>n", ":Neotree<CR>", { desc = "File Explorer" })
 vim.cmd("nnoremap <silent> <Leader>h :noh<CR>")
-vim.keymap.set("n", "<Leader>p", Snacks.lazygit.open, { desc = "Lazygit" })
+-- vim.keymap.set("n", "<Leader>p", Snacks.lazygit.open, { desc = "Lazygit" })
 vim.keymap.set("n", "<leader>m", function() vim.cmd("vertical botright Man") end, { desc = "Man" })
 vim.keymap.set("n", "<Leader>s", vim.treesitter.start, { desc = "treesitter start" })
 
