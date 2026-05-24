@@ -55,6 +55,7 @@ vim.cmd("nnoremap <A-l> <C-w>l")
 -- vim.cmd("nnoremap <silent> <C-j> :wincmd j<CR>")
 -- vim.cmd("nnoremap <silent> <C-k> :wincmd k<CR>")
 -- vim.cmd("nnoremap <silent> <C-l> :wincmd l<CR>")
+vim.keymap.set("n", "<C-P>", "<C-^>")
 
 -- Tab navigation
 vim.keymap.set("n", "<C-t>", "<CMD>tabnew %<CR>")
