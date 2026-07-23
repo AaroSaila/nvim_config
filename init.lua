@@ -157,6 +157,18 @@ local plugins = {
         ---@type render.md.UserConfig
         opts = {},
     },
+    {
+        "lewis6991/gitsigns.nvim"
+    },
+    {
+        'Wansmer/symbol-usage.nvim',
+        event = 'LspAttach', -- need run before LspAttach if you use nvim 0.9. On 0.10 use 'LspAttach'
+        config = function()
+            require('symbol-usage').setup({
+
+            })
+        end
+    },
 
     -- Color schemes
     {
@@ -206,7 +218,7 @@ cmp.setup({
         },
         { name = "nvim_lsp" },
         { name = "luasnip" },
-        { name = "pyright" },
+        { name = "basedpyright" },
         { name = "clangd" },
         { name = "eslint" },
         { name = "ts_ls" },
@@ -251,6 +263,18 @@ require("nvim-highlight-colors").setup({})
 --     processor = "magick_cli"
 -- })
 require("nvim-ts-autotag").setup()
+require("gitsigns").setup({
+    on_attach = function(bufnr)
+        local gitsigns = require("gitsigns")
+        local function map(mode, l, r, opts)
+            opts = opts or {}
+            opts.buffer = bufnr
+            vim.keymap.set(mode, l, r, opts)
+        end
+
+        map('n', '<leader>dd', gitsigns.diffthis)
+    end
+})
 
 -- Linter setup
 local cpplint = require("lint").linters.cpplint
@@ -265,7 +289,7 @@ require("lint").linters_by_ft = {
 vim.lsp.enable({
     "lua_ls",
     "clangd",
-    "pyright",
+    "basedpyright",
     "gopls",
     "ts_ls",
     "glsl_analyzer"
@@ -291,9 +315,19 @@ vim.lsp.config("lua_ls", {
     }
 })
 
+local clangd_sources = {
+    "/usr/bin/arm-none-eabi-g*",
+    "/home/aaro/.espressif/tools/riscv32-esp-elf/esp-14.2.0_20241119/riscv32-esp-elf/bin/*",
+    "/home/aaro/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/bin/*",
+    "/home/aaro/.local/bin/x86_64-w64-mingw32-*"
+}
+local clangd_sources_str = "--query-driver="
+for _, source in pairs(clangd_sources) do
+    clangd_sources_str = clangd_sources_str .. source .. ","
+end
 vim.lsp.config("clangd", {
     -- cmd = { "clangd", "--query-driver=/usr/bin/arm-none-eabi-g*:/home/aaro/.espressif/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/bin/*" }
-    cmd = { "clangd", "--query-driver=/usr/bin/arm-none-eabi-g*,/home/aaro/.espressif/tools/riscv32-esp-elf/esp-14.2.0_20241119/riscv32-esp-elf/bin/*,/home/aaro/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/bin/*" }
+    cmd = { "clangd", clangd_sources_str }
 })
 
 -- vim.lsp.config("denols", {
