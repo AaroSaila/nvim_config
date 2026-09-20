@@ -32,6 +32,7 @@ vim.keymap.set("n", "<Leader>o", ":lsp stop<CR>", { desc = "LSP stop" })
 local telescope = require("telescope.builtin")
 vim.keymap.set("n", "<Leader>tf", telescope.find_files, { desc = "Telescope files" })
 vim.keymap.set("n", "<Leader>th", telescope.help_tags, { desc = "Telescope help tags" })
+vim.keymap.set("n", "<Leader>tg", telescope.grep_string, { desc = "Telescope grep string" })
 
 -- Window resizing
 vim.cmd("nnoremap <silent> <M-v> :vertical :resize -1<CR>")
