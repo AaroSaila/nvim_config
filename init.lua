@@ -160,15 +160,15 @@ local plugins = {
     {
         "lewis6991/gitsigns.nvim"
     },
-    {
-        'Wansmer/symbol-usage.nvim',
-        event = 'LspAttach', -- need run before LspAttach if you use nvim 0.9. On 0.10 use 'LspAttach'
-        config = function()
-            require('symbol-usage').setup({
-
-            })
-        end
-    },
+    -- {
+    --     'Wansmer/symbol-usage.nvim',
+    --     event = 'LspAttach', -- need run before LspAttach if you use nvim 0.9. On 0.10 use 'LspAttach'
+    --     config = function()
+    --         require('symbol-usage').setup({
+    --
+    --         })
+    --     end
+    -- },
 
     -- Color schemes
     {
@@ -309,7 +309,7 @@ vim.lsp.config("lua_ls", {
     settings = {
         Lua = {
             diagnostics = {
-                globals = { "vim", "Snacks" }
+                globals = { "vim", "Snacks", "hl" }
             }
         }
     }

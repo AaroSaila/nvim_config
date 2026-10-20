@@ -36,7 +36,7 @@ vim.api.nvim_create_user_command(
 )
 
 vim.api.nvim_create_user_command("FormatChooseLsp", function()
-    local function format_with_client(client_name)
+    local function format_with_client(client_name, current_buf)
         vim.lsp.buf.format({
             bufnr = current_buf,
             filter = function(client)
@@ -48,7 +48,7 @@ vim.api.nvim_create_user_command("FormatChooseLsp", function()
     local current_buf = vim.api.nvim_get_current_buf()
     local clients = vim.lsp.get_clients({ bufnr = current_buf })
     if #clients == 1 then
-        format_with_client(clients[1].name)
+        format_with_client(clients[1].name, current_buf)
     else
         vim.ui.select(
             clients,
@@ -59,7 +59,7 @@ vim.api.nvim_create_user_command("FormatChooseLsp", function()
                 end
             },
             function(chosen_client, _)
-                format_with_client(chosen_client.name)
+                format_with_client(chosen_client.name, current_buf)
             end
         )
     end
